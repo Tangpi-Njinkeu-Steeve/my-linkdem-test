@@ -117,29 +117,38 @@
             }
         }
 
-        // 2. Render the Action Buttons
-        function renderContacts(contacts) {
-            const list = document.getElementById('contact-list');
-            contacts.forEach(person => {
-                const card = document.createElement('div');
-                card.className = 'contact-card';
-                
-                let buttons = `<a href="tel:${person.num}" class="action-btn call-btn">CALL</a>`;
-                
-                if (person.w) {
-                    const waMsg = encodeURIComponent("Hello, I have found your item with the Link Dem tag. I'm contacting you to return it safely.");
-                    buttons += `<a href="https://wa.me/${person.num}?text=${waMsg}" class="action-btn wa-btn">WHATSAPP</a>`;
-                }
+function renderContacts(decodedData) {
+    const list = document.getElementById('contact-list');
+    
+    // Access the owner and the list from our new data structure
+    const owner = decodedData.owner || "the owner";
+    const contacts = decodedData.list || [];
 
-                card.innerHTML = `
-                    <div class="contact-info">
-                        <h3>${person.n}</h3>
-                    </div>
-                    <div class="btn-group">${buttons}</div>
-                `;
-                list.appendChild(card);
-            });
+    contacts.forEach(person => {
+        const card = document.createElement('div');
+        card.className = 'contact-card';
+        
+        // Prepare the WhatsApp message using the Owner's Name
+        const customMsg = `Hello! I have found an item belonging to ${owner}. I am contacting you via the Link Dem tag to return it safely.`;
+        const encodedMsg = encodeURIComponent(customMsg);
+        
+        // SECURITY: Phone number is in href, but NEVER in the innerHTML text
+        let buttons = `<a href="tel:${person.num}" class="action-btn call-btn">CALL</a>`;
+        
+        if (person.w) {
+            buttons += `<a href="https://wa.me/${person.num}?text=${encodedMsg}" class="action-btn wa-btn">WHATSAPP</a>`;
         }
+
+        card.innerHTML = `
+            <div class="contact-info">
+                <span style="font-size: 0.7rem; opacity: 0.6; display: block;">Contact Person</span>
+                <h3>${person.n}</h3>
+            </div>
+            <div class="btn-group">${buttons}</div>
+        `;
+        list.appendChild(card);
+    });
+}
 
         // 3. 60-Second Security Timer Logic
         function startSecurityTimer() {

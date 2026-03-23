@@ -1,11 +1,12 @@
 document.getElementById('generate-btn').addEventListener('click', function() {
     let contacts = [];
+    // NEW: Get the owner's name
+    const ownerName = document.getElementById('owner-name').value || "the owner";
 
-    // 1. Loop through the 4 sections to get data [cite: 79]
     for (let i = 1; i <= 4; i++) {
         const name = document.getElementById(`name${i}`).value;
         const number = document.getElementById(`number${i}`).value;
-        const isWhatsapp = document.getElementById(`whatsapp${i}`).checked; // [cite: 80]
+        const isWhatsapp = document.getElementById(`whatsapp${i}`).checked;
 
         if (name && number) {
             contacts.push({ n: name, num: number, w: isWhatsapp });
@@ -17,17 +18,19 @@ document.getElementById('generate-btn').addEventListener('click', function() {
         return;
     }
 
-    // 2. Encode data to Base64 (The "Secret Shield") [cite: 81]
-    const jsonString = JSON.stringify(contacts);
+    // NEW: Include owner name in the object
+    const dataToEncode = {
+        owner: ownerName,
+        list: contacts
+    };
+
+    const jsonString = JSON.stringify(dataToEncode);
     const encodedData = btoa(jsonString);
 
-    // 3. Build the URL for the "Find" page [cite: 82]
-    // window.location.origin automatically detects if you are on localhost or a real website
+    // Build URL (Ensure this points to your Vercel URL once deployed)
     const baseURL = window.location.origin + "/find.html"; 
     const finalURL = `${baseURL}?id=${encodedData}`;
 
-    // 4. NEW: Redirect to the dedicated Print Page
-    // This sends the finalURL to your pre-designed print.html [cite: 83]
     const encodedQRData = encodeURIComponent(finalURL);
     window.location.href = `print.html?qr=${encodedQRData}`;
 });

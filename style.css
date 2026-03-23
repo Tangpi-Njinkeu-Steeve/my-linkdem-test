@@ -1,0 +1,315 @@
+/* --- Link Dem Global Styles --- */
+:root {
+    --primary-ivory: #FFFBEB;
+    --secondary-green: #064E3B;
+    --emphasis-yellow: #F59E0B;
+    --text-on-light: #1E293B;
+    --text-on-dark: #FFFBEB;
+    --accent-red: #cc0000;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--primary-ivory);
+    color: var(--text-on-light);
+    line-height: 1.6;
+}
+
+/* --- Navigation --- */
+/* --- Logo Styling --- */
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px; /* Adjust this width to fit your design */
+    height: auto;
+    overflow: hidden;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain; /* Ensures the logo isn't stretched */
+    transition: transform 0.3s ease;
+}
+
+/* Optional: Slight pop effect when hovering over the logo */
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+/* Footer specific logo adjustment */
+footer .logo {
+    margin-bottom: 20px;
+    justify-content: flex-start; /* Aligns logo to the left in footer */
+}
+
+nav {
+    background-color: var(--secondary-green);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+nav .logo {
+    width: 120px;
+    height: 40px;
+    background: url('logo.png') no-repeat center/contain; /* Replace with your SVG/PNG path */
+}
+
+nav .links a {
+    color: var(--text-on-dark);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+nav .links a:hover {
+    color: var(--emphasis-yellow);
+}
+
+/* --- Main Layout --- */
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* --- Input Sections (Side-by-Side Flex) --- */
+.input-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+section {
+    flex: 1 1 calc(25% - 20px); /* 4:4 Layout */
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border-top: 4px solid var(--emphasis-yellow);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+section label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--secondary-green);
+}
+
+section input[type="text"],
+section input[type="number"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 6px;
+    outline: none;
+    transition: var(--transition);
+}
+
+section input:focus {
+    border-color: var(--emphasis-yellow);
+}
+
+section input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 15px;
+    accent-color: var(--secondary-green);
+}
+
+/* --- Generation Button --- */
+button {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 18px;
+    background-color: var(--secondary-green);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 14px 0 rgba(6, 78, 59, 0.39);
+}
+
+button:hover {
+    background-color: #043a2c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(6, 78, 59, 0.23);
+}
+
+/* Centering the logo over the QR code */
+.qr-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.qr-logo-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px; /* Adjust size: must be small enough to keep QR readable */
+    height: 50px;
+    background: white; /* Adds a small border so logo doesn't touch the QR pixels */
+    padding: 5px;
+    border-radius: 8px;
+}
+
+/* --- The Speech (About) Section --- */
+/* --- Minimalist Speech Card --- */
+.speech {
+    background-color: #ffffff;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin: 3rem auto;
+    max-width: 900px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+    border-left: 6px solid var(--emphasis-yellow);
+    transition: var(--transition);
+}
+
+.speech h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--secondary-green);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.speech h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--secondary-green);
+    margin: 1.5rem 0 0.75rem;
+    border-bottom: 2px solid rgba(6, 78, 59, 0.1);
+    display: inline-block;
+    padding-bottom: 0.25rem;
+}
+
+.speech p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #2d3e50;
+}
+
+.speech ol, .speech ul {
+    margin: 1rem 0 1rem 1.5rem;
+    padding-left: 0.5rem;
+}
+
+.speech li {
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+    color: #2d3e50;
+}
+
+.speech li strong {
+    color: var(--secondary-green);
+    font-weight: 600;
+}
+
+.speech p strong {
+    color: var(--emphasis-yellow);
+    font-weight: 600;
+}
+
+/* Subtle hover effect for card */
+.speech:hover {
+    box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .speech {
+        padding: 1.5rem;
+        margin: 2rem 0;
+    }
+    .speech h2 {
+        font-size: 1.5rem;
+    }
+    .speech h3 {
+        font-size: 1.25rem;
+    }
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--text-on-light);
+    color: var(--text-on-dark);
+    padding: 50px 5% 20px;
+    margin-top: 80px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    border-bottom: 1px solid rgba(255, 251, 235, 0.1);
+    padding-bottom: 40px;
+}
+
+.footer-section h3 {
+    color: var(--emphasis-yellow);
+    margin-bottom: 15px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    section {
+        flex: 1 1 calc(50% - 20px); /* 2:2 on tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    section {
+        flex: 1 1 100%; /* 1:1 on mobile */
+    }
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+    nav .links a {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .logo {
+        width: 120px;
+    }
+}

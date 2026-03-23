@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Dem - Sticker Export</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --dark-green: #063101;
+            --bright-green: #7cfc00;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: sans-serif;
+        }
+
+        /* Container for perfect 3cm square capture */
+        .sticker-card {
+            width: 400px; 
+            height: 400px;
+            background-color: var(--dark-green);
+            position: relative;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .header-text {
+            color: var(--bright-green);
+            font-size: 28px;
+            font-weight: 900;
+            margin-top: 25px;
+            z-index: 10; /* Highest priority */
+        }
+
+        #qrcode {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            z-index: 10; /* Ensures it sits ABOVE the curve */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Lowered the curve so it doesn't overlap the QR code pixels */
+        .bg-curve {
+            position: absolute;
+            bottom: -80px;
+            width: 140%;
+            height: 200px;
+            background-color: var(--bright-green);
+            border-radius: 50%;
+            z-index: 1; /* Lowest priority */
+        }
+
+        .footer-text {
+            position: absolute;
+            bottom: 25px;
+            color: var(--dark-green);
+            font-size: 13px;
+            text-align: center;
+            padding: 0 30px;
+            font-weight: bold;
+            z-index: 10;
+            line-height: 1.4;
+        }
+
+        .download-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: var(--dark-green);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sticker-capture-area">
+        <div class="sticker-card" id="sticker">
+            <div class="header-text">FOUND ?? SCAN</div>
+            
+            <div id="qrcode"></div>
+            
+            <p class="footer-text">
+                Link Dem helps people to recover lost items safely.
+            </p>
+
+            <div class="bg-curve"></div>
+        </div>
+    </div>
+
+    <button class="download-btn" id="download">Download to Gallery</button>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const qrData = urlParams.get('qr');
+
+        if (qrData) {
+            new QRCode(document.getElementById("qrcode"), {
+                text: decodeURIComponent(qrData),
+                width: 180, /* Slightly smaller to fit perfectly  */
+                height: 180,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        }
+
+        document.getElementById('download').addEventListener('click', function() {
+            const stickerElement = document.getElementById('sticker');
+            
+            html2canvas(stickerElement, { 
+                scale: 3, /* Higher scale for sharp printing at Serigraphs  */
+                useCORS: true,
+                backgroundColor: "#063101" 
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL("image/png");
+                link.download = 'LinkDem-Sticker-Fixed.png';
+                link.click();
+            });
+        });
+    </script>
+</body>
+</html>

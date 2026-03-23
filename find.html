@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Dem - Secure Recovery</title>
+    <style>
+        :root {
+            --dark-green: #063101;
+            --bright-green: #7cfc00;
+            --warning-red: #ef4444;
+        }
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, var(--dark-green) 0%, #0a1f02 100%);
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+        .timer-badge {
+            background: var(--warning-red);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: pulse 1s infinite;
+        }
+        h2 { color: var(--bright-green); margin-bottom: 10px; }
+        p { font-size: 0.95rem; opacity: 0.8; margin-bottom: 30px; }
+
+        /* Contact Cards */
+        .contact-list { display: flex; flex-direction: column; gap: 15px; }
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(124, 252, 0, 0.3);
+        }
+        .contact-info h3 { margin: 0; font-size: 1.1rem; text-align: left; }
+        
+        .btn-group { display: flex; gap: 8px; }
+        .action-btn {
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+        .call-btn { background: var(--bright-green); color: var(--dark-green); }
+        .wa-btn { background: #25D366; color: white; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Expired State */
+        .hidden { display: none !important; }
+        #expired-msg h1 { color: var(--warning-red); }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-portal">
+        <div class="timer-badge">Session Expires in: <span id="timer">60</span>s</div>
+        
+        <h2>Item Found</h2>
+        <p>Thank you for your honesty. Please use the buttons below to contact the owner safely.</p>
+
+        <div class="contact-list" id="contact-list">
+            </div>
+    </div>
+
+    <div class="container hidden" id="expired-msg">
+        <h1>SESSION EXPIRED</h1>
+        <p>For the owner's safety, this information has been wiped. Please re-scan the QR code to see details again.</p>
+        <button onclick="window.location.reload()" style="background: var(--bright-green); border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Retry Scan</button>
+    </div>
+
+    <script>
+        // 1. Decode Data from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedId = urlParams.get('id');
+
+        if (!encodedId) {
+            document.body.innerHTML = "<h1>Error: Invalid Security Token</h1>";
+        } else {
+            try {
+                const decodedData = JSON.parse(atob(encodedId));
+                renderContacts(decodedData);
+                startSecurityTimer();
+            } catch (e) {
+                console.error("Decoding error", e);
+            }
+        }
+
+        // 2. Render the Action Buttons
+        function renderContacts(contacts) {
+            const list = document.getElementById('contact-list');
+            contacts.forEach(person => {
+                const card = document.createElement('div');
+                card.className = 'contact-card';
+                
+                let buttons = `<a href="tel:${person.num}" class="action-btn call-btn">CALL</a>`;
+                
+                if (person.w) {
+                    const waMsg = encodeURIComponent("Hello, I have found your item with the Link Dem tag. I'm contacting you to return it safely.");
+                    buttons += `<a href="https://wa.me/${person.num}?text=${waMsg}" class="action-btn wa-btn">WHATSAPP</a>`;
+                }
+
+                card.innerHTML = `
+                    <div class="contact-info">
+                        <h3>${person.n}</h3>
+                    </div>
+                    <div class="btn-group">${buttons}</div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        // 3. 60-Second Security Timer Logic
+        function startSecurityTimer() {
+            let timeLeft = 60;
+            const timerDisplay = document.getElementById('timer');
+            
+            const countdown = setInterval(() => {
+                timeLeft--;
+                timerDisplay.innerText = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    // Wipe the data and switch views
+                    document.getElementById('main-portal').classList.add('hidden');
+                    document.getElementById('expired-msg').classList.remove('hidden');
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

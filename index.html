@@ -4,115 +4,208 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <title>Link Dem — Never Lose What Matters</title>
+    <link rel="stylesheet" href="try.css">
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav>
-        <div class="logo"><img src="Link Demm.png" alt=""></div>
-        <div class="links">
-            <a href="">Home</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
-
-    <main>
-        <div class="input-container">
-            <section>
-            <label for="name1">Enter a name</label>
-            <input type="text" name="name1" id="name1">
-            <label for="whatsapp1">Is this number whatsapp ?</label>
-            <input type="checkbox" name="whatsapp1" id="whatsapp1">
-            <label for="number1">Enter the number</label>
-            <input type="number" name="number1" id="number1">
-        </section>
-
-        <section>
-            <label for="name2">Enter a name</label>
-            <input type="text" name="name2" id="name2">
-            <label for="whatsapp2">Is this number whatsapp ?</label>
-            <input type="checkbox" name="whatsapp2" id="whatsapp2">
-            <label for="number2">Enter the number</label>
-            <input type="number" name="number2" id="number2">
-        </section>
-
-        <section>
-            <label for="name3">Enter a name</label>
-            <input type="text" name="name3" id="name3">
-            <label for="whatsapp3">Is this number whatsapp ?</label>
-            <input type="checkbox" name="whatsapp3" id="whatsapp3">
-            <label for="number3">Enter the number</label>
-            <input type="number" name="number3" id="number3">
-        </section>
-
-        <section>
-            <label for="name4">Enter a name</label>
-            <input type="text" name="name4" id="name4">
-            <label for="whatsapp4">Is this number whatsapp ?</label>
-            <input type="checkbox" name="whatsapp4" id="whatsapp4">
-            <label for="number4">Enter the number</label>
-            <input type="number" name="number4" id="number4">
-        </section>
-
-        <section style="grid-column: 1 / -1; background: rgba(124, 252, 0, 0.1); border: 2px solid var(--bright-green);">
-    <label for="owner-name" style="color: var(--bright-green); font-weight: bold;">Your Name (The Owner)</label>
-    <input type="text" id="owner-name" placeholder="e.g. JESSY" required style="width: 100%; padding: 10px; margin-top: 5px;">
-</section>
-        </div>
-
-       <button id="generate-btn" type="button">Click here to generate the QR code</button>
-
-        <div class="speech" id="about">
-    <h2>What is Link Dem?</h2>
-    <p>
-        Imagine you lose your favorite bag, your phone, or even worse, a child gets lost in a 
-        big crowd. Usually, people are afraid to help because they don't know who to call, or 
-        the owner is afraid to put their phone number on a tag because bad people might see 
-        it.
-    </p>
-    <p>
-        Link Dem is like a <strong>"secret shield"</strong> for your phone number.
-    </p>
-    <ol>
-        <li><strong>It Hides Your Number:</strong> Instead of writing your phone number on your bag, you make a special "QR Code" (a black and white square picture).</li>
-        <li><strong>It Protects You:</strong> When someone scans that square with their phone, they don't see your number. They only see two big buttons: "Call" or "WhatsApp".</li>
-        <li><strong>It Disappears:</strong> The information only stays on their phone for <strong>1 minute</strong>. After that, it vanishes! If they want to see it again, they have to scan the bag again.</li>
-    </ol>
-
-    <h3>How do I use it?</h3>
-    <ol start="1">
-        <li>You go to the website and type in the phone numbers of people you trust (like Mom, Dad, or an Uncle).</li>
-        <li>The website creates your special QR Code square.</li>
-        <li>You must download this picture and take it to a <strong>"Serigraph"</strong> (a printing shop). They will print it onto a strong sticker or a tag for you. Generally, it cost from 3500 - 5000 or more FCFA to have a 1 cm cube which will have on it multiple stick.</li>
-        <li>Stick it on your phone, your laptop, your school bag, or even a bracelet for a child.</li>
-    </ol>
-    <p>
-        Now, if you lose your item, a kind person can scan the code and call your family 
-        immediately without ever knowing your private phone number!
-    </p>
-</div>
-    </main>
-
-    <footer>
-        <div class="footer" id="contact">
-            <div class="logo">
-                <img src="Link Demm.png" alt="">
-            </div>
-            <p>This website in Cameroon is helping people to link back to their items since 2026.</p>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p>Email: tangpisteeve@gmail.com</p>
-                <p>Location: Douala, Cameroon</p>
-                <p>Phone: +237 652 003 779</p>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-        <p>&copy; 2026 Link Dem. All Rights Reserved. Built for Cameroon Excellence.</p>
+<!-- NAV -->
+<nav>
+    <div class="nav-logo">Link<span>Dem</span></div>
+    <div class="links">
+        <a href="#">Home</a>
+        <a href="#about">Help</a>
+        <a href="#contact">Contact</a>
     </div>
-    </footer>
+</nav>
+
+<!-- welcome -->
+<section class="welcome">
+    <h1>Lost items <em>found</em> without sharing your number.</h1>
+    <p class="welcome-sub">Create a private QR code for your belongings. 
+        Anyone who finds them can reach your contacts — without ever seeing your 
+        phone number.</p>
+    <a href="#create" class="welcome-button">
+        Create your QR code
+    </a>
+    <div class="welcome-stats">
+        <div class="stat">
+            <span class="stat-num">60s</span>
+            <span class="stat-label">Data expires</span>
+        </div>
+        <div class="stat">
+            <span class="stat-num">4</span>
+            <span class="stat-label">Emergency contacts</span>
+        </div>
+        <div class="stat">
+            <span class="stat-num">0</span>
+            <span class="stat-label">Numbers revealed</span>
+        </div>
+    </div>
+</section>
+
+<!-- FORM SECTION -->
+<section class="form-section" id="create">
+    <h2 class="section-title">Enter your emergency<br>contacts</h2>
+    <p class="section-des" style="margin-bottom: 48px;">Add up to 4 people we can show when someone scans your QR code.</p>
+
+    <!-- Owner -->
+    <div class="owner-strip">
+        <div class="owner-strip-icon">
+            <img src="svg/gemini-svg.svg" alt="User Icon" class="icon">
+        </div>
+        <div class="owner-strip-text">
+            <label for="owner-name">Enter Your name</label>
+            <input type="text" id="owner-name" placeholder="e.g. JESSY" required>
+        </div>
+    </div>
+
+    <!-- 4 contact cards -->
+    <div class="contacts-grid">
+        <!-- card template repeated 4x -->
+        <script>
+        document.write([1,2,3,4].map(i => `
+        <div class="contact-card">
+            <div class="card-num">
+                Contact <div class="card-num-badge">${i}</div>
+            </div>
+            <label for="name${i}">Full name</label>
+            <input type="text" id="name${i}" placeholder="e.g. Maman Cécile">
+            <label for="number${i}">Phone number</label>
+            <input type="number" id="number${i}" placeholder="237 6XX XXX XXX">
+            <label class="toggle-container">
+    <input type="checkbox" id="whatsapp1">
+    
+    <div class="toggle"></div>
+    
+    <span class="label-text">WhatsApp?</span>
+</label>
+        </div>`).join(''));
+        </script>
+    </div>
+
+    <div class="generate-wrap">
+        <button id="generate-btn" type="button">
+            Generate my QR code
+        </button>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="about">
+    <div class="how-inner">
+        <div class="how-header">
+            <div class="section-label" style="color: var(--gold)">How it works</div>
+            <h2 class="section-title" style="color:#fff">Simple. Private. Powerful.</h2>
+            <p class="section-desc" style="color:rgba(255,255,255,0.5)">Your number stays hidden. Your item gets returned.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step">
+                <div class="step-num">01</div>
+                <div class="step-icon">
+                    <img src="svg/edit.svg" alt="Edit Icon" class="icon-small">
+                </div>
+                <h3>Enter your contacts</h3>
+                <p>Add up to 4 trusted people — family, friends, a colleague. Include their WhatsApp status.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <div class="step-icon">
+                    <img src="svg/grid.svg" alt="Edit Icon" class="icon-small">
+                </div>
+                <h3>Get your QR code</h3>
+                <p>We generate a unique QR that hides your contacts behind a secure, time-limited link.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <div class="step-icon">
+                    <img src="svg/monitor.svg" alt="Edit Icon" class="icon-small">
+                </div>
+                <h3>Print &amp; stick it</h3>
+                <p>Take it to a sérigraphie shop in Douala. Cost: ~3,500–5,000 FCFA for a durable sticker.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">04</div>
+                <div class="step-icon">
+                    <img src="svg/phone.svg" alt="Edit Icon" class="icon-small">
+                </div>
+                <h3>Get found, not tracked</h3>
+                <p>Finder scans → sees Call/WhatsApp buttons → data vanishes after 60 seconds. Zero trace.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT DETAILS -->
+<section class="about-section">
+    <div class="about-card">
+        <div class="section-label">The full story</div>
+        <h2>What is Link Dem?</h2>
+        <p>Imagine you lose your favourite bag, your phone, or a child gets lost in a crowd. People are often afraid to help — they don't know who to call. And you're afraid to write your number on a tag because strangers might misuse it.</p>
+        <p>Link Dem is your <strong>"secret shield"</strong>: a QR code that connects people back to you — without ever exposing your personal number.</p>
+
+        <div class="highlight-box">
+             The contact information is visible for only <strong>60 seconds</strong> after scanning. After that, it disappears automatically. The finder has to scan again to re-access it.
+        </div>
+
+        <h3>How do I use it?</h3>
+        <ol>
+            <li>Enter the phone numbers of people you trust — your mum, dad, uncle, colleague.</li>
+            <li>Click <strong>Generate</strong> to get your unique QR code image.</li>
+            <li>Take it to a <strong>sérigraphie</strong> shop in Douala. They'll print it as a small durable sticker (typically 3,500–5,000 FCFA for a 1 cm cube with multiple stickers).</li>
+            <li>Stick it on your phone back, laptop, school bag, official documents, or a bracelet for a child.</li>
+        </ol>
+        <p>A kind person who finds your item scans the code, taps <strong>Call</strong> or <strong>WhatsApp</strong>, and your trusted contact arranges the return — your private number never exposed.</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+    <div class="footer-inner">
+        <div>
+            <div class="footer-logo">Link<span>Dem</span></div>
+            <p class="footer-tagline">Helping Cameroonians reconnect with their lost items since 2026.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>tangpisteeve@gmail.com</p>
+            <p>+237 652 003 779</p>
+            <p>Douala, Cameroon</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 Link Dem. All Rights Reserved. Built for Cameroon Excellence.
+    </div>
+</footer>
+
+<script>
+document.getElementById('generate-btn').addEventListener('click', function () {
+    let contacts = [];
+    const ownerName = document.getElementById('owner-name').value || "the owner";
+
+    for (let i = 1; i <= 4; i++) {
+        const name   = document.getElementById(`name${i}`).value;
+        const number = document.getElementById(`number${i}`).value;
+        const isWA   = document.getElementById(`whatsapp${i}`).checked;
+        if (name && number) contacts.push({ n: name, num: number, w: isWA });
+    }
+
+    if (contacts.length === 0) {
+        alert("Please enter at least one contact name and number.");
+        return;
+    }
+
+    const dataToEncode = { owner: ownerName, list: contacts };
+    const encodedData  = btoa(JSON.stringify(dataToEncode));
+    const baseURL      = window.location.origin + "/find.html";
+    const finalURL     = `${baseURL}?id=${encodedData}`;
+    const encodedQR    = encodeURIComponent(finalURL);
+    window.location.href = `print.html?qr=${encodedQR}`;
+});
+</script>
+
 </body>
 </html>
